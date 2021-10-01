@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Landing from './components/layout/Landing'
+import Auth from './pages/Auth'
+import ChatRoom from './pages/ChatRoom'
+import AuthContextProvider from './contexts/AuthContext'
+import ProtectedRoute from './utils/ProtectedRoute'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <AuthContextProvider>
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Landing} />
+          <Route
+            exact
+            path='/login'
+            render={(props) => <Auth {...props} authRoute='login' />}
+          />
+          <Route
+            exact
+            path='/register'
+            render={(props) => <Auth {...props} authRoute='register' />}
+          />
+          <ProtectedRoute exact path='/chatroom' component={ChatRoom} />
+        </Switch>
+      </Router>
+    </AuthContextProvider>
+  )
 }
 
-export default App;
+export default App
