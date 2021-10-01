@@ -1,14 +1,29 @@
-import React from 'react'
+import { useState, useContext } from 'react'
+import { AuthContext } from '../../contexts/AuthContext'
 import { Form, Input, Button } from 'antd'
 import { Link } from 'react-router-dom'
+import AlertMessage from '../layout/AlertMessage'
 
 const RegisterForm = () => {
-  const onFinish = (values) => {
-    console.log('Success:', values)
-  }
+  // Load context
+  const { registerUser } = useContext(AuthContext)
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
+  const [alert, setAlert] = useState(null)
+
+  // Handle the register process
+  const register = async (event) => {
+    try {
+      const registerData = await registerUser(event)
+      console.log(registerData)
+      if (registerData.success) {
+        setAlert({ type: 'error', message: registerData.message })
+        //alert will disapper after 5s
+        setTimeout(() => setAlert(null), 5000)
+        return
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -22,10 +37,12 @@ const RegisterForm = () => {
         initialValues={{
           remember: true,
         }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        onFinish={register}
         autoComplete='off'
       >
+        <Form.Item>
+          <AlertMessage alert={alert} />
+        </Form.Item>
         <Form.Item
           name='username'
           rules={[

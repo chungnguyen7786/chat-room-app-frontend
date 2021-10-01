@@ -6,7 +6,7 @@ import AlertMessage from '../layout/AlertMessage'
 
 const LoginForm = () => {
   // load context
-  const { loadUser, loginUser } = useContext(AuthContext)
+  const { loginUser } = useContext(AuthContext)
 
   const [alert, setAlert] = useState(null)
 
@@ -21,7 +21,6 @@ const LoginForm = () => {
         setTimeout(() => setAlert(null), 5000)
         return
       }
-      loadUser()
     } catch (error) {
       console.error(error)
     }
@@ -42,7 +41,6 @@ const LoginForm = () => {
         autoComplete='off'
       >
         <Form.Item>
-          {/* {alert && <Alert type={alert.type} message={alert.message} />} */}
           <AlertMessage alert={alert} />
         </Form.Item>
         <Form.Item
