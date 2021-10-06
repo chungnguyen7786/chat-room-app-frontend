@@ -29,6 +29,7 @@ const LoginForm = () => {
   return (
     <>
       <Form
+        size='large'
         name='login'
         wrapperCol={{
           offset: 8,
@@ -52,7 +53,7 @@ const LoginForm = () => {
             },
           ]}
         >
-          <Input placeholder='email' />
+          <Input placeholder='Email' />
         </Form.Item>
         <Form.Item
           name='password'
@@ -63,7 +64,7 @@ const LoginForm = () => {
             },
           ]}
         >
-          <Input.Password placeholder='password' />
+          <Input.Password placeholder='Password' />
         </Form.Item>
         <Form.Item
           wrapperCol={{

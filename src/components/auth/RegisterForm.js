@@ -30,6 +30,7 @@ const RegisterForm = () => {
     <>
       <Form
         name='register'
+        size='large'
         wrapperCol={{
           offset: 8,
           span: 8,
@@ -52,7 +53,7 @@ const RegisterForm = () => {
             },
           ]}
         >
-          <Input placeholder='username' />
+          <Input placeholder='Username' />
         </Form.Item>
         <Form.Item
           name='email'
@@ -63,7 +64,7 @@ const RegisterForm = () => {
             },
           ]}
         >
-          <Input placeholder='email' />
+          <Input placeholder='Email' />
         </Form.Item>
 
         <Form.Item
@@ -75,11 +76,11 @@ const RegisterForm = () => {
             },
           ]}
         >
-          <Input.Password placeholder='password' />
+          <Input.Password placeholder='Password' />
         </Form.Item>
 
         <Form.Item name='avatarUrl'>
-          <Input placeholder='avatarUrl' />
+          <Input placeholder='AvatarUrl' />
         </Form.Item>
 
         <Form.Item
