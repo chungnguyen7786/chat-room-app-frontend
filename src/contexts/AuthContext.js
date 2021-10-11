@@ -83,6 +83,7 @@ const AuthContextProvider = ({ children }) => {
     dispatch({
       type: SET_AUTH,
       payload: {
+        authLoading: false,
         isAuthenticated: false,
         user: null,
       },

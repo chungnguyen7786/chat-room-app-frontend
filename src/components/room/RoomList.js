@@ -1,23 +1,50 @@
-import React from 'react'
-import { Collapse, Typography, Button } from 'antd'
+import { useContext, useEffect } from 'react'
+import { Collapse, Typography, Button, Spin } from 'antd'
 import { PlusSquareOutlined } from '@ant-design/icons'
+import { RoomContext } from '../../contexts/RoomContext'
 
 const { Panel } = Collapse
 
-const RoomInfo = () => {
+const RoomList = () => {
+  const {
+    roomState: { rooms, roomsLoading },
+    setShowAddRoomModal,
+    getRooms,
+    selectRoom,
+  } = useContext(RoomContext)
+
+  // Start: Get all rooms
+  useEffect(() => getRooms(), [])
+
+  if (!rooms) {
+    return (
+      <Button type='text' icon={<PlusSquareOutlined />} className='add-room'>
+        Add Room
+      </Button>
+    )
+  }
+
   return (
     <Collapse ghost defaultActiveKey={['1']}>
       <Panel header='Room list' key='1'>
-        <Typography.Link>
-          <p>Room 1</p>
-        </Typography.Link>
-        <Typography.Link>
-          <p>Room 2</p>
-        </Typography.Link>
-        <Typography.Link>
-          <p>Room 3</p>
-        </Typography.Link>
-        <Button type='text' icon={<PlusSquareOutlined />} className='add-room'>
+        {roomsLoading ? (
+          <Spin />
+        ) : (
+          rooms.map((room) => (
+            <Typography.Link
+              key={room._id}
+              onClick={() => selectRoom(room._id)}
+            >
+              <p>{room.roomName}</p>
+            </Typography.Link>
+          ))
+        )}
+        <Button
+          type='text'
+          icon={<PlusSquareOutlined />}
+          className='add-room'
+          onClick={() => setShowAddRoomModal(true)}
+        >
           Add Room
         </Button>
       </Panel>
@@ -25,4 +52,4 @@ const RoomInfo = () => {
   )
 }
 
-export default RoomInfo
+export default RoomList
