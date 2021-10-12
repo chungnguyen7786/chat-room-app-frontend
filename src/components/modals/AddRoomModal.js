@@ -1,9 +1,10 @@
 import { useContext } from 'react'
 import { Form, Modal, Input } from 'antd'
 import { RoomContext } from '../../contexts/RoomContext'
+import AlertMessage from '../layout/AlertMessage'
 
 const AddRoomModal = () => {
-  const { showAddRoomModal, setShowAddRoomModal, addRoom } =
+  const { showAddRoomModal, setShowAddRoomModal, addRoom, alert } =
     useContext(RoomContext)
 
   const [form] = Form.useForm()
@@ -11,7 +12,7 @@ const AddRoomModal = () => {
   const handleOk = () => {
     addRoom(form.getFieldsValue())
     form.resetFields()
-    setShowAddRoomModal(false)
+    setShowAddRoomModal(true)
   }
 
   const handleCancel = () => {
@@ -26,6 +27,7 @@ const AddRoomModal = () => {
       onOk={handleOk}
       onCancel={handleCancel}
     >
+      <AlertMessage alert={alert} />
       <Form form={form} layout='vertical'>
         <Form.Item label='Room name' name='roomName'>
           <Input />

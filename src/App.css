@@ -49,10 +49,6 @@
   color: white !important;
 }
 
-/* .ant-collapse-item p {
-  color: white;
-} */
-
 .ant-collapse-content-box {
   padding: 0 40px !important;
 }
@@ -65,9 +61,8 @@
   color: white;
   padding: 0px;
 }
-
-.ant-collapse-content-box .add-room :hover {
-  color: blue;
+.ant-collapse-content-box .add-room:hover {
+  color: #aaa;
 }
 
 .chat-window {

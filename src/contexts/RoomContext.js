@@ -44,6 +44,9 @@ const RoomContextProvider = ({ children }) => {
         return response.data
       }
     } catch (error) {
+      setAlert({ type: 'error', message: error.response.data.message })
+      //alert will disapper after 5s
+      setTimeout(() => setAlert(null), 5000)
       return error.response.data
         ? error.response.data
         : { success: false, message: 'Server error' }

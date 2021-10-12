@@ -41,10 +41,10 @@ const RoomList = () => {
         )}
         <Button
           type='text'
-          icon={<PlusSquareOutlined />}
           className='add-room'
           onClick={() => setShowAddRoomModal(true)}
         >
+          <PlusSquareOutlined />
           Add Room
         </Button>
       </Panel>
