@@ -21,6 +21,7 @@ const RoomContextProvider = ({ children }) => {
   })
 
   const [showAddRoomModal, setShowAddRoomModal] = useState(false)
+  const [showInviteMemberModal, setShowInviteMemberModal] = useState(false)
   const [alert, setAlert] = useState(null)
 
   // Get room list
@@ -57,7 +58,14 @@ const RoomContextProvider = ({ children }) => {
   const selectRoom = (roomId) => {
     const room = roomState.rooms.find((room) => room._id === roomId)
     dispatch({ type: SELECT_ROOM, payload: room })
-    console.log(room._id)
+  }
+
+  // Clear all state
+  const clearState = () => {
+    setShowAddRoomModal(false)
+    setShowInviteMemberModal(false)
+    setAlert(null)
+    selectRoom(null)
   }
 
   // Room context data
@@ -70,6 +78,7 @@ const RoomContextProvider = ({ children }) => {
     getRooms,
     addRoom,
     selectRoom,
+    clearState,
   }
 
   return (

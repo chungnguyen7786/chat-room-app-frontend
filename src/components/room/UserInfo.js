@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { Button, Avatar, Typography } from 'antd'
 import { AuthContext } from '../../contexts/AuthContext'
+import { RoomContext } from '../../contexts/RoomContext'
 
 const UserInfo = () => {
   const {
@@ -8,6 +9,9 @@ const UserInfo = () => {
     loadUser,
     logoutUser,
   } = useContext(AuthContext)
+
+  const { clearState } = useContext(RoomContext)
+
   useEffect(() => loadUser(), [])
 
   return (
@@ -16,7 +20,13 @@ const UserInfo = () => {
         <Avatar src={user.avatarUrl} />
         <Typography.Text className='username'>{user.username}</Typography.Text>
       </div>
-      <Button ghost onClick={() => logoutUser()}>
+      <Button
+        ghost
+        onClick={() => {
+          clearState()
+          logoutUser()
+        }}
+      >
         Logout
       </Button>
     </div>
