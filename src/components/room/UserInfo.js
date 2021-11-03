@@ -17,7 +17,9 @@ const UserInfo = () => {
   return (
     <div className='userinfo'>
       <div>
-        <Avatar src={user.avatarUrl} />
+        <Avatar src={user.avatarUrl}>
+          {user.avatarUrl ? '' : user.username?.charAt(0)?.toUpperCase()}
+        </Avatar>
         <Typography.Text className='username'>{user.username}</Typography.Text>
       </div>
       <Button

@@ -7,6 +7,7 @@ import AuthContextProvider from './contexts/AuthContext'
 import RoomContextProvider from './contexts/RoomContext'
 import ProtectedRoute from './utils/ProtectedRoute'
 import AddRoomModal from './components/modals/AddRoomModal'
+import InviteMemberModal from './components/modals/InviteMembersModal'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <ProtectedRoute exact path='/chatroom' component={ChatRoom} />
           </Switch>
           <AddRoomModal />
+          <InviteMemberModal />
         </Router>
       </RoomContextProvider>
     </AuthContextProvider>

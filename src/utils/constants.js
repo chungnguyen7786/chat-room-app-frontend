@@ -7,4 +7,6 @@ export const SET_AUTH = 'SET_AUTH'
 export const ROOMS_LOADED_SUCCESS = 'ROOM_LOADED_SUCCESS'
 export const ROOMS_LOADED_FAIL = 'ROOM_LOADED_FAIL'
 export const ADD_ROOM = 'ADD_ROOM'
-export const SELECT_ROOM = 'SELECT_A_ROOM'
+export const SELECT_ROOM = 'SELECT_ROOM'
+
+export const INVITE_USERS = 'INVITE_USERS'

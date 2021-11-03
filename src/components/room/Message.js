@@ -5,8 +5,8 @@ const Message = ({ text, displayName, createdAt, avatarUrl }) => {
   return (
     <div className='message'>
       <div>
-        <Avatar size='small' src={avatarUrl}>
-          A
+        <Avatar size='medium' src={avatarUrl}>
+          {avatarUrl ? '' : displayName?.charAt(0)?.toUpperCase()}
         </Avatar>
         <Typography.Text className='sender'>{displayName}</Typography.Text>
         <Typography.Text className='chat-time'>{createdAt}</Typography.Text>

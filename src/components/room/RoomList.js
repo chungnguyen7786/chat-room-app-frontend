@@ -7,14 +7,23 @@ const { Panel } = Collapse
 
 const RoomList = () => {
   const {
-    roomState: { rooms, roomsLoading },
+    socket,
+    roomState: { room, rooms, roomsLoading },
     setShowAddRoomModal,
     getRooms,
     selectRoom,
   } = useContext(RoomContext)
 
   // Start: Get all rooms
-  useEffect(() => getRooms(), [])
+  useEffect(() => {
+    getRooms()
+  }, [])
+
+  const handleSelectedRoom = (roomId) => {
+    const oldRoom = { ...room }
+    socket.emit('oldRoom', oldRoom)
+    selectRoom(roomId)
+  }
 
   if (!rooms) {
     return (
@@ -33,7 +42,7 @@ const RoomList = () => {
           rooms.map((room) => (
             <Typography.Link
               key={room._id}
-              onClick={() => selectRoom(room._id)}
+              onClick={() => handleSelectedRoom(room._id)}
             >
               <p>{room.roomName}</p>
             </Typography.Link>

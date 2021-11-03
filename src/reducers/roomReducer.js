@@ -3,6 +3,7 @@ import {
   ROOMS_LOADED_FAIL,
   ADD_ROOM,
   SELECT_ROOM,
+  INVITE_USERS,
 } from '../utils/constants'
 
 export const roomReducer = (state, action) => {
@@ -26,6 +27,11 @@ export const roomReducer = (state, action) => {
         rooms: [...state.rooms, payload],
       }
     case SELECT_ROOM:
+      return {
+        ...state,
+        room: payload,
+      }
+    case INVITE_USERS:
       return {
         ...state,
         room: payload,
